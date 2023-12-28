@@ -44,16 +44,12 @@ routes.post('/tasks', function (req, res, next) {
     //create task
 
   }catch(err){
-    throw new UnprocessableEntityException( 'Please fills all required fields.', {
-      errors: { name: 'Name should not be empty.' }
-    } )
-
     next(err)
   }
 })
 ```
 
-Handle error using middleware:
+## Handle error using middleware:
 
 ```js
 const { errorMiddleware, notFoundMiddleware } = require( 'node-http-exceptions')
@@ -69,7 +65,7 @@ app.use(notFoundMiddleware)
 app.use(errorMiddleware)
 ```
 
-Use base HttpException
+## Use base HttpException
 
 ```js
 const { HttpException, httpStatus } = require( 'node-http-exceptions')
