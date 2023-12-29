@@ -2,7 +2,7 @@
   "name": "node-http-exceptions",
   "description": "a top level exception handle package",
   "license": "MIT",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "author": "Shohel Rana",
   "main": "dist/index.js",
   "module": "./dist/index.js",
