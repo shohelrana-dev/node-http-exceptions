@@ -1,21 +1,21 @@
-# node http exception library
+# Streamlined Node.js HTTP Exception Handling with `node-http-exceptions`
 
-## Features
+## Key Features:
 
-1. **Common HTTP error:** Handle common HTTP error with dedicated exception classes.
-2. **httpStatus:** This appears to be a utility module that provides HTTP status codes. It might be used to standardize the status codes in your application.
-3. **errorMiddleware:** This is likely a middleware function for handling errors in an Express.js or similar web server. It might be used to catch and process errors in the request-response cycle.
-4. **notFoundMiddleware:** This is another middleware function designed to handle requests for routes that are not defined (404 Not Found).
-5. **HttpException:** This seems to be a base class for HTTP exceptions. It might be extended for specific HTTP error cases.
-6. **TypeScript Support:** The package is TypeScript supported, meaning it includes type definitions that enhance the development experience.
+- **Structured HTTP Exception Classes:** Dedicated classes for common HTTP errors (`BadRequestException`, `UnauthorizedException`, `NotFoundException`, etc.) promote code organization and consistency.
+- **Centralized HTTP Status Codes:** The `httpStatus` module provides easy access to standard HTTP status codes, enhancing code readability and maintainability.
+- **Error Handling Middleware:** `errorMiddleware` and `notFoundMiddleware` facilitate centralized error management, simplifying error handling logic and ensuring appropriate responses.
+- **Flexible Base Class:** The `HttpException` class allows for custom exception creation with specific status codes and messages, enabling tailored error handling.
+- **Informative Default Messages:** Common error cases have default messages, but customizable messages enable more informative and user-friendly responses.
+- **TypeScript Support:** Ensure type definitions for all modules and classes to enhance code completion, type checking, and overall development experience.
 
 
-To install, you can use [npm](https://npmjs.org/) or [yarn](https://yarnpkg.com):
+#### Installation:
 
     $ npm install --save node-http-exceptions
     $ yarn add node-http-exceptions
 
-## Examples
+## Usage Examples:
 
 Here is simple example:
 
@@ -26,9 +26,8 @@ const { UnauthorizedException, BadRequestException, UnprocessableEntityException
 const routes = Router()
 
 routes.post('/tasks', function (req, res, next) {
-  try{
     if (!req.user){
-        throw new UnauthorizedException('You are unauthorized.')
+        throw new UnauthorizedException() //default message will be shown '401 Unauthorized'
     }
 
     if ( !req.body ) ) {
@@ -42,14 +41,10 @@ routes.post('/tasks', function (req, res, next) {
     }
 
     //create task
-
-  }catch(err){
-    next(err)
-  }
 })
 ```
 
-## Handle error using middleware:
+### Centralized Error Handling with Middleware::
 
 ```js
 const { errorMiddleware, notFoundMiddleware } = require( 'node-http-exceptions')
@@ -65,7 +60,7 @@ app.use(notFoundMiddleware)
 app.use(errorMiddleware)
 ```
 
-## Use base HttpException
+### Use base HttpException
 
 ```js
 const { HttpException, httpStatus } = require( 'node-http-exceptions')
@@ -74,20 +69,15 @@ const express = require('express')
 const app = express()
 
 app.post('/tasks', function (req, res, next) {
-  try{
     if (!req.user){
         throw new HttpException(httpStatus.UNAUTHORIZED, 'You are unauthorized.')
     }
 
     //do something
-
-  }catch(err){
-    next(err)
-  }
 })
 ```
 
-## The httpStatus object
+### The `httpStatus` object
 
 Note that the `node-http-exceptions` also imports a httpStatus object:
 
@@ -97,6 +87,13 @@ import { httpStatus } from 'node-http-exceptions'
 console.log(httpStatus.OK) // Output: 200
 console.log(httpStatus.NOT_FOUND) // Output: 404
 ```
+
+## Benefits:
+
+- **Improved Code Organization:** Dedicated exception classes and centralized status codes enhance code readability and maintainability.
+- **Simplified Error Handling:** Middleware simplifies error management and ensures consistent responses.
+- **Customizable Error Messages:** Tailor error messages to provide more informative feedback to users.
+- **TypeScript Support:** Enhance development experience with type checking and code completion.
 
 ## Which exception classes this package provides?
 
