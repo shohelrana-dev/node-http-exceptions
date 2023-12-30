@@ -1,36 +1,37 @@
 {
-  "name": "node-http-exceptions",
-  "description": "a top level exception handle package",
-  "license": "MIT",
-  "version": "1.0.1",
-  "author": "Shohel Rana",
-  "main": "dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/shohelrana-dev/node-http-exceptions"
-  },
-  "homepage": "https://github.com/shohelrana-dev/node-http-exceptions",
-  "scripts": {
-    "build": "tsc",
-    "start": "node --watch dist/index.js"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.21",
-    "express": "^4.18.2",
-    "typescript": "^5.3.3"
-  },
-  "keywords": [
-    "exception",
-    "exceptions",
-    "express",
-    "expressjs",
-    "middleware",
-    "handler",
-    "http-error",
-    "node-http-exceptions",
-    "http-exceptions",
-    "express-error"
-  ]
+    "name": "node-http-exceptions",
+    "description": "a top level exception handle package",
+    "license": "MIT",
+    "version": "1.0.3",
+    "author": "Shohel Rana",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "types": "./dist/types/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/shohelrana-dev/node-http-exceptions"
+    },
+    "homepage": "https://github.com/shohelrana-dev/node-http-exceptions",
+    "scripts": {
+        "build": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+        "start": "node --watch dist/index.js",
+        "clean": "rm -rf dist"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.21",
+        "express": "^4.18.2",
+        "typescript": "^5.3.3"
+    },
+    "keywords": [
+        "exception",
+        "exceptions",
+        "express",
+        "expressjs",
+        "middleware",
+        "handler",
+        "http-error",
+        "node-http-exceptions",
+        "http-exceptions",
+        "express-error"
+    ]
 }
